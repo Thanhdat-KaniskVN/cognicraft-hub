@@ -1,0 +1,33 @@
+{
+  "nodes": [
+    { "id": "math", "name": "1. Mathematics", "desc": "Foundation of thinking", "details": "Mathematics provides the foundational language and tools for understanding and building algorithms.", "links": [] },
+    { "id": "calc", "name": "Calculus", "desc": "Derivatives, Integrals", "details": "Calculus is the mathematical study of continuous change. Used in optimization (Gradient Descent) and probability distributions.", "links": [{"title": "MIT 18.01", "url": "https://ocw.mit.edu/courses/18-01-single-variable-calculus-fall-2006/", "type": "Course"}] },
+    { "id": "linalg", "name": "Linear Algebra", "desc": "Vectors, Matrices", "details": "The core of Deep Learning. Neural networks are essentially massive matrix multiplications.", "links": [{"title": "MIT 18.06", "url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/", "type": "Course"}] },
+    { "id": "prob", "name": "Probability", "desc": "Probability Theory", "details": "Modeling uncertainty. The foundation of Bayesian Inference and predictive modeling.", "links": [{"title": "Math Stats PDF", "url": "https://korivernon.com/documents/MathematicalStatisticsandDataAnalysis3ed.pdf", "type": "PDF"}] },
+    { "id": "stats", "name": "Statistics", "desc": "Applied Statistics", "details": "Collecting, analyzing, interpreting, and presenting data to make informed decisions.", "links": [] },
+    { "id": "discrete", "name": "Discrete Math", "desc": "Logic, Graphs", "details": "Foundational logic for Computer Science, graph theory, and combinatorics.", "links": [] },
+    { "id": "python", "name": "2. Python", "desc": "Core Programming Language", "details": "The most popular programming language for Data Science due to its powerful ecosystem of libraries.", "links": [{"title": "Python Docs", "url": "https://docs.python.org/3/", "type": "Doc"}] },
+    { "id": "basic", "name": "Python Basics", "desc": "Syntax, Loops", "details": "Variables, data types, conditional statements, for/while loops.", "links": [] },
+    { "id": "oop", "name": "OOP", "desc": "Classes, Objects", "details": "Object-Oriented Programming: Classes, Inheritance, Polymorphism, Encapsulation.", "links": [] },
+    { "id": "dsa", "name": "DSA", "desc": "Data Structures & Algorithms", "details": "Data Structures (Array, Tree, Graph) and Algorithms (Sort, Search, DP). Mandatory for tech interviews.", "links": [{"title": "LeetCode", "url": "https://leetcode.com/", "type": "Practice"}] },
+    { "id": "pandas", "name": "Pandas & NumPy", "desc": "Data Processing", "details": "Manipulating DataFrames, multi-dimensional arrays, data cleaning and transformation.", "links": [] },
+    { "id": "sql", "name": "3. SQL", "desc": "Relational Databases", "details": "Structured Query Language. A survival skill for any Data Scientist.", "links": [] },
+    { "id": "sql_basic", "name": "Basic Query", "desc": "SELECT, WHERE", "details": "Basic queries: Retrieving data, filtering with WHERE clauses.", "links": [] },
+    { "id": "sql_join", "name": "Joins", "desc": "INNER, LEFT, RIGHT", "details": "Combining data from multiple tables based on related columns.", "links": [] },
+    { "id": "sql_agg", "name": "Aggregations", "desc": "GROUP BY, HAVING", "details": "Statistical calculations on groups of data: SUM, AVG, COUNT.", "links": [] },
+    { "id": "sql_window", "name": "Window Functions", "desc": "RANK, LEAD, LAG", "details": "Calculations across a set of table rows that are somehow related to the current row, without losing detail.", "links": [] },
+    { "id": "ds", "name": "4. Data Science", "desc": "Data Science", "details": "An interdisciplinary field that uses scientific methods, algorithms, and systems to extract knowledge from data.", "links": [] },
+    { "id": "eda", "name": "EDA", "desc": "Exploratory Data Analysis", "details": "Using statistics and visualizations to understand data before modeling.", "links": [] },
+    { "id": "ml", "name": "Machine Learning", "desc": "Machine Learning", "details": "Supervised, Unsupervised Learning. Algorithms like Linear Regression, Random Forest, SVM.", "links": [] },
+    { "id": "dl", "name": "Deep Learning", "desc": "Deep Learning", "details": "Neural Networks, CNN, RNN, Transformer. Requires a strong foundation in Linear Algebra.", "links": [] },
+    { "id": "mlops", "name": "MLOps", "desc": "Model Deployment", "details": "Deploying models to production, CI/CD, Docker, and monitoring.", "links": [] }
+  ],
+  "links": [
+    { "source": "math", "target": "calc" }, { "source": "math", "target": "linalg" }, { "source": "math", "target": "prob" }, { "source": "math", "target": "discrete" }, { "source": "prob", "target": "stats" },
+    { "source": "python", "target": "basic" }, { "source": "python", "target": "oop" }, { "source": "python", "target": "dsa" }, { "source": "python", "target": "pandas" },
+    { "source": "sql", "target": "sql_basic" }, { "source": "sql", "target": "sql_join" }, { "source": "sql", "target": "sql_agg" }, { "source": "sql", "target": "sql_window" },
+    { "source": "ds", "target": "eda" }, { "source": "ds", "target": "ml" }, { "source": "ds", "target": "mlops" },
+    { "source": "linalg", "target": "ml" }, { "source": "calc", "target": "ml" }, { "source": "stats", "target": "ml" }, { "source": "pandas", "target": "eda" }, { "source": "sql_agg", "target": "eda" },
+    { "source": "ml", "target": "dl" }, { "source": "dl", "target": "mlops" }
+  ]
+}

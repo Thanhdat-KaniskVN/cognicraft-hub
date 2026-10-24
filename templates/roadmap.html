@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="roadmap-page">
+    <!-- CỘT TRÁI -->
+    <aside class="panel-left">
+        <div class="panel-header">Phase 1 & 2</div>
+        <div id="tree-left"></div>
+    </aside>
+
+    <!-- CỘT GIỮA -->
+    <main class="panel-center">
+        <div class="graph-wrapper">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search nodes...">
+            </div>
+            <button class="btn-center" onclick="window.doCenter()">Center View</button>
+            <div id="graph-loading">Loading 3D...</div>
+            <div id="3d-graph"></div>
+            <div class="watermark">NeuroVault Architecture</div>
+        </div>
+    </main>
+
+    <!-- CỘT PHẢI -->
+    <aside class="panel-right">
+        <div class="panel-header">Phase 3 & 4</div>
+        <div id="tree-right" style="margin-bottom: 2rem;"></div>
+        
+        <div class="detail-panel" id="detail-panel">
+            <span class="panel-category">NODE DETAILS</span>
+            <h3 class="panel-title" id="panel-title">Select a node</h3>
+            <div class="panel-desc" id="panel-desc">Click on a node to view description.</div>
+            <div class="panel-links" id="panel-links"></div>
+        </div>
+    </aside>
+</div>
+{% endblock %}
