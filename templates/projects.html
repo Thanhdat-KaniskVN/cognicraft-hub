@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container" style="max-width: 1200px; margin: 100px auto 0; padding: 2rem;">
+    
+    <!-- PHẦN GIỚI THIỆU -->
+    <div class="projects-header" style="margin-bottom: 3rem;">
+        <h1 class="matrix-title" style="font-size: 3rem; margin-bottom: 1rem;">Things I've Built<span class="dot-end">.</span></h1>
+        <p style="color: var(--text-secondary); max-width: 600px; font-size: 1.1rem; line-height: 1.6;">
+            A collection of my data science projects, automation scripts, and system designs. 
+            I focus on building practical solutions that solve real-world problems.
+        </p>
+    </div>
+
+    <!-- LƯỚI DỰ ÁN -->
+    <div class="projects-grid">
+        
+        <!-- Dự án 1: CogniCraft Ecosystem -->
+        <div class="project-card">
+            <div class="project-image-placeholder">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            </div>
+            <div class="project-content">
+                <h3 class="project-title">CogniCraft Ecosystem</h3>
+                <p class="project-desc">A personal knowledge management system and interactive portfolio. Features 3D graph visualization for tracking learning progress and system design.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">Three.js</span>
+                    <span class="tech-tag">JavaScript</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Thanhdat-KaniskVN/cognicraft-ecosystem" class="project-link" target="_blank">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        Source Code
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dự án 2: Math Foundation -->
+        <div class="project-card">
+            <div class="project-image-placeholder">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+            </div>
+            <div class="project-content">
+                <h3 class="project-title">Math Foundation</h3>
+                <p class="project-desc">A collection of mathematical proofs, algorithms, and theorem proving exercises. Built to strengthen foundational logic for Computer Science.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Algorithms</span>
+                    <span class="tech-tag">Mathematics</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Thanhdat-KaniskVN/math-foundation-magical-formation" class="project-link" target="_blank">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        Source Code
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dự án 3: LMS Platform -->
+        <div class="project-card">
+            <div class="project-image-placeholder">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+            </div>
+            <div class="project-content">
+                <h3 class="project-title">LMS Platform</h3>
+                <p class="project-desc">A Learning Management System backend built with Java. Designed to handle course management, user authentication, and system architecture.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">Backend</span>
+                    <span class="tech-tag">System Design</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Thanhdat-KaniskVN/lmsPlatform" class="project-link" target="_blank">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        Source Code
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

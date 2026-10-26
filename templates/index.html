@@ -1,87 +1,53 @@
 {% extends "base.html" %}
 {% block content %}
+<!-- TRANG WEB CHÃNH -->
+<div class="main-website show" id="main-website">
+    
+    <!-- NÃºt Like (ÄÆ°a lÃªn gÃ³c trÃªn bÃªn pháº£i) -->
+    
 
-<header class="hero-matrix">
-    <div class="hero-header">
-        <div class="sys-badge">
-            <span class="dot"></span> [ STATUS: ACTIVE & BUILDING ]
-        </div>
-        
-        <div class="title-wrapper">
-            <div class="accent-line"></div>
-            <div>
-                <p class="greeting">Hi, I'm</p>
-                <h1 class="matrix-title">Phạm Thành Đạt<span class="dot-end">.</span></h1>
-            </div>
-        </div>
-        
-        <p class="matrix-subtitle">
-            Data Science Student <span class="sep">/</span> FPT University
-        </p>
-    </div>
-
-    <div class="hero-main-content">
-        <div class="hero-terminal">
-            <div class="terminal-box">
-                <div class="terminal-header">
-                    <span class="dot red"></span>
-                    <span class="dot yellow"></span>
-                    <span class="dot green"></span>
-                    <span class="terminal-title">guest@cognicraft:~</span>
-                </div>
-                <div class="terminal-body">
-                    <p><span class="prompt">$</span> whoami</p>
-                    <p class="output" id="term-out-1"></p>
-                    <p id="term-cmd-2" style="display:none;"><span class="prompt">$</span> cat /etc/current_focus</p>
-                    <p class="output" id="term-out-2" style="color: var(--text-primary); font-weight: 600;"></p>
-                    <p id="term-cursor" style="display:none;"><span class="prompt">$</span> <span class="blink">_</span></p>
+    <header class="hero-matrix">
+        <div class="hero-header">
+            <div class="title-wrapper">
+                <div class="accent-line"></div>
+                <div>
+                    <p class="greeting">Hi, I'm</p>
+                    <h1 class="matrix-title">Phạm Thành Đạt<span class="dot-end">.</span></h1>
                 </div>
             </div>
+            <p class="matrix-subtitle">Data Science Student <span class="sep">/</span> FPT University</p>
         </div>
-
-        <div class="hero-explore">
-            <a href="/roadmap" class="pro-card-btn">
-                <div class="pro-btn-content">
-                    <span class="pro-btn-label">Interactive System</span>
-                    <h3 class="pro-btn-title">Explore 3D Roadmap</h3>
-                    <span class="pro-btn-desc">Explore my 72-week learning roadmap in a 3D interactive network.</span>
+        <div class="hero-main-content">
+            <div class="hero-terminal">
+                <div class="terminal-box">
+                    <div class="terminal-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                        <span class="terminal-title">guest@cognicraft:~</span>
+                    </div>
+                    <div class="terminal-body">
+                        <p><span class="prompt">$</span> whoami</p>
+                        <p class="output" id="term-out-1"></p>
+                        <p id="term-cmd-2" style="display:none;"><span class="prompt">$</span> cat /etc/current_focus</p>
+                        <p class="output" id="term-out-2" style="color: var(--text-primary); font-weight: 600;"></p>
+                        <p id="term-cursor" style="display:none;"><span class="prompt">$</span> <span class="blink">_</span></p>
+                    </div>
                 </div>
-                <div class="pro-btn-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </div>
-            </a>
-        </div>
-    </div>
-</header>
-
-<section class="bento-section">
-    <div class="bento-grid">
-        <div class="bento-card" data-aos="fade-up" data-aos-duration="800">
-            <h3 class="bento-title">01 / Philosophy</h3>
-            <p class="bento-content">"Slow but deep — One goal per week — One real capability per phase."</p>
-            <div class="bento-footer">Core Values</div>
-        </div>
-        
-        <div class="bento-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
-            <h3 class="bento-title">02 / Current Focus</h3>
-            <ul class="bento-list">
-                <li><span>→</span> 72 Weeks Roadmap (Foundation)</li>
-                <li><span>→</span> System Design & Architecture</li>
-                <li><span>→</span> Math for Machine Learning</li>
-            </ul>
-            <div class="bento-footer">Active Learning</div>
-        </div>
-
-        <div class="bento-card highlight-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-            <h3 class="bento-title">03 / The Hub</h3>
-            <p class="bento-content">Systematizing documents, progress, and knowledge in one place.</p>
-            <div class="bento-stats">
-                <div class="stat-item"><span>10+</span> Papers</div>
-                <div class="stat-item"><span>4</span> Projects</div>
             </div>
-            <div class="bento-footer">Explore the Graph</div>
+                        <div class="hero-explore">
+                <a href="/expertise" class="pro-card-btn">
+                    <div class="pro-btn-content">
+                        <span class="pro-btn-label">Interactive Portfolio</span>
+                        <h3 class="pro-btn-title">Explore Expertise</h3>
+                        <span class="pro-btn-desc">Visualize my tech stack, projects, and system architecture.</span>
+                    </div>
+                    <div class="pro-btn-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                </a>
+            </div>
         </div>
-    </div>
-</section>
-
+    </header>
+    <section class="bento-section">
+            </section>
+</div>
 {% endblock %}

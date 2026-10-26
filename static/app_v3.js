@@ -1,24 +1,22 @@
 // 1. THEME TOGGLE
-const themeToggle = document.getElementById('theme-toggle');
+const themeToggles = document.querySelectorAll('.theme-toggle-btn, #theme-toggle');
 const body = document.body;
 body.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
-if(themeToggle) {
-    themeToggle.addEventListener('click', () => {
+themeToggles.forEach(btn => {
+    btn.addEventListener('click', () => {
         const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         body.setAttribute('data-theme', next);
         localStorage.setItem('theme', next);
     });
-}
+});
 
 // 2. TYPING EFFECT
 document.addEventListener('DOMContentLoaded', () => {
     const out1 = document.getElementById('term-out-1');
     if (!out1) return; 
-
     const text1 = "First-year student, passionate about building systems. Sharing my self-development journey through a novel approach. Quite introverted but love helping others.";
     const text2 = "Building strong foundations in Math & Computer Science.";
     let i = 0, j = 0;
-
     const t1 = setInterval(() => {
         out1.textContent += text1.charAt(i);
         i++;
@@ -42,45 +40,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 3. AOS INIT
 document.addEventListener('DOMContentLoaded', () => {
-    if (typeof AOS !== 'undefined') {
-        AOS.init({ duration: 800, once: false, mirror: true, offset: 50 });
+    if (typeof AOS !== 'undefined') AOS.init({ duration: 1000, easing: "ease-out-cubic", once: true, mirror: false, offset: 50 });
+});
+
+// 4. MOBILE MENU LOGIC
+document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
     }
 });
 
-// 4. ROADMAP 3D
-let globalGraph = null;
-let globalData = null;
-window.doCenter = function() { if(globalGraph) globalGraph.zoomToFit(1000, 50); };
+// 5. ROADMAP 3D & CAMERA & SEARCH LOGIC
+window.globalGraph = null;
+window.globalData = null;
+window.doCenter = function() { if(window.globalGraph) window.globalGraph.zoomToFit(1000, 50); };
 
-document.addEventListener('DOMContentLoaded', () => {
-    const graphContainer = document.getElementById('3d-graph');
-    if (!graphContainer) return; 
+window.focusNode = function(id) {
+    if (!window.globalGraph || !window.globalData) return;
+    const node = window.globalData.nodes.find(n => n.id === id);
+    if (!node) return;
     
-    window.focusNode = function(id) {
-        if (!globalGraph || !globalData) return;
-        const node = globalData.nodes.find(n => n.id === id);
-        if (!node) return;
-        
-        const distRatio = 1 + 120/Math.hypot(node.x, node.y, node.z || 1);
-        globalGraph.cameraPosition({ x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio }, node, 1000);
+    const dist = 120;
+    if (node.x === undefined) {
+        setTimeout(() => window.focusNode(id), 500);
+        return;
+    }
 
-        document.getElementById('panel-title').textContent = node.name;
-        document.getElementById('panel-desc').innerHTML = `<p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:0.5rem;">${node.desc || ''}</p> ${node.details || ''}`;
-        
-        const panelLinks = document.getElementById('panel-links'); 
+    const nodePos = { x: node.x, y: node.y, z: node.z };
+    const camPos = window.globalGraph.cameraPosition();
+    
+    let dx = camPos.x - nodePos.x;
+    let dy = camPos.y - nodePos.y;
+    let dz = camPos.z - nodePos.z;
+    let currentDist = Math.hypot(dx, dy, dz);
+    if (currentDist === 0) { dx = 1; dy = 1; dz = 1; currentDist = Math.sqrt(3); }
+
+    const ratio = dist / currentDist;
+    window.globalGraph.cameraPosition(
+        { x: nodePos.x + dx * ratio, y: nodePos.y + dy * ratio, z: nodePos.z + dz * ratio }, 
+        nodePos, 
+        1500 
+    );
+
+    const panelTitle = document.getElementById('panel-title');
+    const panelDesc = document.getElementById('panel-desc');
+    const panelLinks = document.getElementById('panel-links'); 
+    if(panelTitle) panelTitle.textContent = node.name;
+    if(panelDesc) panelDesc.innerHTML = `<p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:0.5rem;">${node.desc || ''}</p> ${node.details || ''}`;
+    if(panelLinks) {
         panelLinks.innerHTML = '';
         if (node.links) {
             node.links.forEach(link => { 
                 panelLinks.innerHTML += `<a href="${link.url}" target="_blank">${link.title} <span style="background:var(--text-primary); color:var(--bg-base); padding:1px 4px; border-radius:2px; font-size:0.65rem;">${link.type}</span></a>`; 
             });
         }
-        document.getElementById('detail-panel').classList.add('open');
+    }
+    const detailPanel = document.getElementById('detail-panel');
+    if(detailPanel) detailPanel.classList.add('open');
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    const graphContainer = document.getElementById('3d-graph');
+    if (!graphContainer) return; 
+
+    const getNodeColor = (id) => {
+        if (['math', 'calc', 'linalg', 'prob', 'stats', 'discrete'].includes(id)) return '#3b82f6';
+        if (['python', 'basic', 'oop', 'dsa', 'pandas'].includes(id)) return '#eab308';
+        if (['sql', 'sql_basic', 'sql_join', 'sql_agg', 'sql_window'].includes(id)) return '#ef4444';
+        if (['ds', 'eda', 'ml', 'dl', 'mlops'].includes(id)) return '#10a37f';
+        return '#ffffff'; 
     };
 
     setTimeout(() => {
         fetch('/api/roadmap').then(res => res.json()).then(gData => {
-            globalData = gData;
-            document.getElementById('graph-loading').remove();
+            window.globalData = gData;
+            const loader = document.getElementById('graph-loading');
+            if (loader) loader.remove();
             
             const left = document.getElementById('tree-left'); 
             const right = document.getElementById('tree-right');
@@ -90,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!gData.links.some(l => l.target === node.id)) { 
                     const isL = p12.includes(node.id); 
                     const c = isL ? left : right;
-                    
                     const p = document.createElement('div'); 
                     p.className = 'tree-item'; 
                     p.innerHTML = `<strong>${node.name}</strong>`; 
@@ -113,42 +151,40 @@ document.addEventListener('DOMContentLoaded', () => {
             const isDark = () => body.getAttribute('data-theme') === 'dark';
             const roots = gData.nodes.filter(n => !gData.links.some(l => l.target === n.id)).map(n => n.id);
 
-            globalGraph = ForceGraph3D()(graphContainer)
+            window.globalGraph = ForceGraph3D()(graphContainer)
                 .width(graphContainer.clientWidth).height(graphContainer.clientHeight)
-                .backgroundColor('rgba(0,0,0,0)').nodeRelSize(6) 
-                .nodeVal(n => roots.includes(n.id) ? 4 : 1.5)
+                .backgroundColor('rgba(0,0,0,0)')
                 .linkWidth(1)
                 .linkColor(() => isDark() ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.15)')
                 .linkDirectionalParticles(1).linkDirectionalParticleSpeed(0.01).linkDirectionalParticleWidth(2)
-                .nodeColor(n => isDark() ? (roots.includes(n.id) ? '#ffffff' : '#a1a1aa') : (roots.includes(n.id) ? '#000000' : '#52525b'))
                 .nodeThreeObject(n => {
                     const sprite = new SpriteText(n.name);
-                    sprite.color = isDark() ? (roots.includes(n.id) ? '#ffffff' : '#a1a1aa') : (roots.includes(n.id) ? '#000000' : '#52525b');
+                    sprite.color = getNodeColor(n.id);
                     sprite.textHeight = roots.includes(n.id) ? 4 : 2.5;
-                    sprite.fontFace = 'Inter'; sprite.fontWeight = roots.includes(n.id) ? '700' : '500';
+                    sprite.fontFace = 'Inter'; 
+                    sprite.fontWeight = roots.includes(n.id) ? '700' : '500';
                     return sprite;
                 })
                 .onNodeClick(n => window.focusNode(n.id));
 
-            globalGraph.graphData(gData);
-            globalGraph.d3Force('charge').strength(-100).d3Force('link').distance(40).d3Force('center').strength(0.1);
+            window.globalGraph.graphData(gData);
+            window.globalGraph.d3Force('charge').strength(-100).d3Force('link').distance(40).d3Force('center').strength(0.1);
             
             const resizeGraph = () => {
-                if (globalGraph) {
-                    globalGraph.width(graphContainer.clientWidth).height(graphContainer.clientHeight);
-                }
+                if (window.globalGraph) window.globalGraph.width(graphContainer.clientWidth).height(graphContainer.clientHeight);
             };
             window.addEventListener('resize', resizeGraph);
 
-            globalGraph.onEngineStop(() => {
-                resizeGraph();
-                globalGraph.zoomToFit(1000, 60);
-            });
+            setTimeout(() => { 
+                resizeGraph(); 
+                window.globalGraph.zoomToFit(1000, 60); 
+            }, 1500);
             
-            setTimeout(() => {
-                resizeGraph();
-                globalGraph.zoomToFit(1000, 60);
-            }, 2000);
-        });
+        }).catch(err => console.error("Fetch data error:", err));
     }, 300);
+
+    // MOBILE RESIZE FIX
+    setTimeout(() => {
+        if (window.innerWidth <= 1024) window.dispatchEvent(new Event('resize'));
+    }, 1000);
 });

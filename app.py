@@ -16,9 +16,14 @@ def write_data(data):
 @app.route('/')
 def index(): return render_template('index.html')
 
+@app.route('/expertise')
 @app.route('/roadmap')
 def roadmap(): return render_template('roadmap.html')
 
+
+@app.route('/projects')
+def projects():
+    return render_template('projects.html')
 @app.route('/books')
 def books(): return render_template('books.html')
 
@@ -66,6 +71,42 @@ def delete_link():
     data['links'] = [l for l in data['links'] if not (l['source'] == link_data['source'] and l['target'] == link_data['target'])]
     write_data(data)
     return jsonify({"status": "success"})
+
+
+# --- API LIKE (THẢ TYM) ---
+LIKES_FILE = os.path.join(app.root_path, 'data', 'likes.json')
+
+def read_likes():
+    if os.path.exists(LIKES_FILE):
+        with open(LIKES_FILE, 'r') as f: return json.load(f)
+    return {"count": 0}
+
+@app.route('/api/likes', methods=['GET'])
+def get_likes():
+    return jsonify(read_likes())
+
+@app.route('/api/like', methods=['POST'])
+def add_like():
+    likes = read_likes()
+    likes["count"] += 1
+    with open(LIKES_FILE, 'w') as f: json.dump(likes, f)
+    return jsonify(likes)
+
+# --- API LƯU NOTE CÁ NHÂN (SECOND BRAIN) ---
+@app.route('/api/node/note', methods=['POST'])
+def save_note():
+    payload = request.json
+    node_id = payload.get('id')
+    note_text = payload.get('note')
+    
+    data = read_data()
+    node = next((n for n in data['nodes'] if n['id'] == node_id), None)
+    
+    if node:
+        node['note'] = note_text
+        write_data(data)
+        return jsonify({"status": "success"})
+    return jsonify({"status": "error", "message": "Node not found"}), 404
 
 if __name__ == '__main__':
     import os

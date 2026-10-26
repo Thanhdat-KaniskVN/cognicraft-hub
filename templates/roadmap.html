@@ -1,36 +1,131 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="roadmap-page">
-    <!-- CỘT TRÁI -->
-    <aside class="panel-left">
-        <div class="panel-header">Phase 1 & 2</div>
+<div class="dashboard-layout">
+    <aside class="sidebar-left">
+        <div class="sidebar-header">Phase 1 & 2</div>
         <div id="tree-left"></div>
     </aside>
 
-    <!-- CỘT GIỮA -->
-    <main class="panel-center">
-        <div class="graph-wrapper">
-            <div class="search-container">
-                <input type="text" id="search-input" placeholder="Search nodes...">
+    <main class="main-content">
+        <div class="graph-container" style="overflow: visible !important;">
+            <!-- SEARCH FIXED -->
+            <div style="position: absolute; top: 1.5rem; left: 1.5rem; z-index: 999999; width: 300px;">
+                <input type="text" id="search-input" placeholder="Search nodes..." style="width: 100%; padding: 10px 15px; background: #0a0a0a !important; border: 1px solid #27272a !important; color: #ffffff !important; border-radius: 6px; font-family: monospace; outline: none; box-sizing: border-box;">
+                <div id="search-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: #0a0a0a !important; border: 1px solid #27272a !important; border-top: none; border-radius: 0 0 6px 6px; max-height: 250px; overflow-y: auto; z-index: 999999; box-shadow: 0 10px 25px rgba(0,0,0,0.9);"></div>
             </div>
-            <button class="btn-center" onclick="window.doCenter()">Center View</button>
-            <div id="graph-loading">Loading 3D...</div>
+
+            <button class="btn-center" onclick="window.doCenter()" style="position: absolute; top: 1.5rem; right: 1.5rem; z-index: 10; padding: 10px 15px; background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-primary); border-radius: 6px; cursor: pointer; font-family: var(--font-mono);">Center View</button>
+            
+            <div id="graph-loading" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: var(--font-mono); color: var(--text-muted);">Loading 3D...</div>
             <div id="3d-graph"></div>
-            <div class="watermark">NeuroVault Architecture</div>
+            
+            <div class="watermark" style="position: absolute; bottom: 1.5rem; left: 1.5rem; font-family: var(--font-mono); color: var(--text-muted); font-size: 0.8rem; pointer-events: none;">NeuroVault Architecture</div>
+            
+            <div class="graph-legend" style="position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); display: flex; gap: 15px; background: rgba(10, 10, 10, 0.8); padding: 10px 15px; border-radius: 6px; border: 1px solid var(--border-color); font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); backdrop-filter: blur(4px); z-index: 10;">
+                <div style="display:flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; border-radius:50%; background:#3b82f6;"></span> Math</div>
+                <div style="display:flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; border-radius:50%; background:#eab308;"></span> Python</div>
+                <div style="display:flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; border-radius:50%; background:#ef4444;"></span> SQL</div>
+                <div style="display:flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; border-radius:50%; background:#10a37f;"></span> Data Science</div>
+            </div>
         </div>
     </main>
 
-    <!-- CỘT PHẢI -->
-    <aside class="panel-right">
-        <div class="panel-header">Phase 3 & 4</div>
+    <aside class="sidebar-right">
+        <div class="sidebar-header">Phase 3 & 4</div>
         <div id="tree-right" style="margin-bottom: 2rem;"></div>
         
         <div class="detail-panel" id="detail-panel">
-            <span class="panel-category">NODE DETAILS</span>
+            <span class="panel-category">SECOND BRAIN NODE</span>
             <h3 class="panel-title" id="panel-title">Select a node</h3>
             <div class="panel-desc" id="panel-desc">Click on a node to view description.</div>
             <div class="panel-links" id="panel-links"></div>
         </div>
     </aside>
 </div>
+
+<!-- SCRIPT XỬ LÝ SEARCH ĐỘC LẬP (NÂNG CẤP) -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const input = document.getElementById('search-input');
+        const drop = document.getElementById('search-dropdown');
+
+        if (input && drop) {
+            input.addEventListener('input', function(e) {
+                const val = e.target.value.toLowerCase().trim();
+                drop.innerHTML = '';
+                
+                if (!val) { drop.style.display = 'none'; return; }
+                if (!window.globalData) return;
+
+                // 1. Lọc các node khớp
+                let matches = window.globalData.nodes.filter(n => 
+                    n.name.toLowerCase().includes(val) || n.id.toLowerCase().includes(val)
+                );
+
+                // 2. Sắp xếp: Node nào bắt đầu bằng từ khóa sẽ hiện lên đầu
+                matches.sort((a, b) => {
+                    const aName = a.name.toLowerCase();
+                    const bName = b.name.toLowerCase();
+                    const aStarts = aName.startsWith(val);
+                    const bStarts = bName.startsWith(val);
+                    
+                    if (aStarts && !bStarts) return -1;
+                    if (!aStarts && bStarts) return 1;
+                    return aName.localeCompare(bName); // Nếu cùng cấp độ, xếp theo ABC
+                });
+
+                if (matches.length > 0) {
+                    drop.style.display = 'block';
+                    matches.forEach(node => {
+                        const el = document.createElement('div');
+                        el.innerText = node.name;
+                        el.style.padding = '10px 15px';
+                        el.style.cursor = 'pointer';
+                        el.style.color = '#ffffff';
+                        el.style.fontFamily = 'monospace';
+                        el.style.fontSize = '0.85rem';
+                        el.style.borderBottom = '1px solid #27272a';
+                        
+                        el.onmouseover = () => el.style.background = '#222';
+                        el.onmouseout = () => el.style.background = 'transparent';
+                        
+                        el.onclick = () => {
+                            if (window.focusNode) window.focusNode(node.id);
+                            drop.style.display = 'none';
+                            input.value = node.name;
+                        };
+                        drop.appendChild(el);
+                    });
+                } else {
+                    drop.style.display = 'block';
+                    const el = document.createElement('div');
+                    el.innerText = 'No results found';
+                    el.style.padding = '10px 15px';
+                    el.style.color = '#ef4444';
+                    el.style.fontFamily = 'monospace';
+                    el.style.fontSize = '0.85rem';
+                    drop.appendChild(el);
+                }
+            });
+
+            // 3. Bắt sự kiện ấn phím Enter
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const firstItem = drop.firstElementChild;
+                    if (firstItem && firstItem.innerText !== 'No results found') {
+                        firstItem.click();
+                    }
+                }
+            });
+
+            // 4. Click ra ngoài thì đóng
+            document.addEventListener('click', function(e) {
+                if (!input.contains(e.target) && !drop.contains(e.target)) {
+                    drop.style.display = 'none';
+                }
+            });
+        }
+    });
+</script>
 {% endblock %}
