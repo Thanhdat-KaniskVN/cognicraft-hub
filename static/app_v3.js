@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             window.globalGraph.graphData(gData);
             window.globalGraph.onEngineStop(() => { window.globalGraph.zoomToFit(1000, 10); });
-            window.globalGraph.d3Force('charge').strength(-200).d3Force('link').distance(80).d3Force('center').strength(1.0);
+            window.globalGraph.d3Force('charge').strength(-80).d3Force('link').distance(40).d3Force('center').strength(1.0);
             
             const resizeGraph = () => {
                 if (window.globalGraph) window.globalGraph.width(graphContainer.clientWidth).height(graphContainer.clientHeight);
