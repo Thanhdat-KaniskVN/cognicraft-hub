@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // 5. ROADMAP 3D & CAMERA & SEARCH LOGIC
 window.globalGraph = null;
 window.globalData = null;
-window.doCenter = function() { if(window.globalGraph) window.globalGraph.zoomToFit(1000, 30); };
+window.doCenter = function() { if(window.globalGraph) window.globalGraph.zoomToFit(1000, 60); };
 
 window.focusNode = function(id) {
     if (!window.globalGraph || !window.globalData) return;
@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(() => { 
                 resizeGraph(); 
-                window.globalGraph.zoomToFit(1000, 30); 
+                window.globalGraph.zoomToFit(1000, 60); 
             }, 1000);
             
         }).catch(err => console.error("Fetch data error:", err));

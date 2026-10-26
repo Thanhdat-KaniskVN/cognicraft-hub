@@ -3,13 +3,13 @@
     { "id": "math", "name": "1. Mathematics", "desc": "Foundation of thinking", "details": "Mathematics provides the foundational language and tools for understanding and building algorithms.", "links": [] },
     { "id": "calc", "name": "Calculus", "desc": "Derivatives, Integrals", "details": "Calculus is the mathematical study of continuous change. Used in optimization (Gradient Descent) and probability distributions.", "links": [{"title": "MIT 18.01", "url": "https://ocw.mit.edu/courses/18-01-single-variable-calculus-fall-2006/", "type": "Course"}] },
     { "id": "linalg", "name": "Linear Algebra", "desc": "Vectors, Matrices", "details": "The core of Deep Learning. Neural networks are essentially massive matrix multiplications.", "links": [{"title": "MIT 18.06", "url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/", "type": "Course"}] },
-    { "id": "prob", "name": "Probability", "desc": "Probability Theory", "details": "Modeling uncertainty. The foundation of Bayesian Inference and predictive modeling.", "links": [{"title": "Math Stats PDF", "url": "https://korivernon.com/documents/MathematicalStatisticsandDataAnalysis3ed.pdf", "type": "PDF"}] },
+    { "id": "prob", "name": "Probability", "desc": "Probability Theory", "details": "Modeling uncertainty. The foundation of Bayesian Inference and predictive modeling.", "links": [] },
     { "id": "stats", "name": "Statistics", "desc": "Applied Statistics", "details": "Collecting, analyzing, interpreting, and presenting data to make informed decisions.", "links": [] },
     { "id": "discrete", "name": "Discrete Math", "desc": "Logic, Graphs", "details": "Foundational logic for Computer Science, graph theory, and combinatorics.", "links": [] },
     { "id": "python", "name": "2. Python", "desc": "Core Programming Language", "details": "The most popular programming language for Data Science due to its powerful ecosystem of libraries.", "links": [{"title": "Python Docs", "url": "https://docs.python.org/3/", "type": "Doc"}] },
     { "id": "basic", "name": "Python Basics", "desc": "Syntax, Loops", "details": "Variables, data types, conditional statements, for/while loops.", "links": [] },
     { "id": "oop", "name": "OOP", "desc": "Classes, Objects", "details": "Object-Oriented Programming: Classes, Inheritance, Polymorphism, Encapsulation.", "links": [] },
-    { "id": "dsa", "name": "DSA", "desc": "Data Structures & Algorithms", "details": "Data Structures (Array, Tree, Graph) and Algorithms (Sort, Search, DP). Mandatory for tech interviews.", "links": [{"title": "LeetCode", "url": "https://leetcode.com/", "type": "Practice"}] },
+    { "id": "dsa", "name": "DSA", "desc": "Data Structures & Algorithms", "details": "Data Structures (Array, Tree, Graph) and Algorithms (Sort, Search, DP). Mandatory for tech interviews.", "links": [] },
     { "id": "pandas", "name": "Pandas & NumPy", "desc": "Data Processing", "details": "Manipulating DataFrames, multi-dimensional arrays, data cleaning and transformation.", "links": [] },
     { "id": "sql", "name": "3. SQL", "desc": "Relational Databases", "details": "Structured Query Language. A survival skill for any Data Scientist.", "links": [] },
     { "id": "sql_basic", "name": "Basic Query", "desc": "SELECT, WHERE", "details": "Basic queries: Retrieving data, filtering with WHERE clauses.", "links": [] },
@@ -29,36 +29,11 @@
     { "source": "ds", "target": "eda" }, { "source": "ds", "target": "ml" }, { "source": "ds", "target": "mlops" },
     { "source": "linalg", "target": "ml" }, { "source": "calc", "target": "ml" }, { "source": "stats", "target": "ml" }, { "source": "pandas", "target": "eda" }, { "source": "sql_agg", "target": "eda" },
     { "source": "ml", "target": "dl" }, { "source": "dl", "target": "mlops" }
-  ]
-,
+  ],
   "commit_log": [
-    { 
-      "hash": "a1b2c3d", 
-      "date": "2026-10-26", 
-      "msg": "init(calc): Completed Chapter 1 - Limits & Derivatives", 
-      "color": "green", 
-      "node": "calc" 
-    },
-    { 
-      "hash": "e5f6g7h", 
-      "date": "2026-10-25", 
-      "msg": "feat(python): Built a basic CLI calculator project", 
-      "color": "green", 
-      "node": "python" 
-    },
-    { 
-      "hash": "x9y8z7w", 
-      "date": "2026-10-24", 
-      "msg": "docs(math): Reviewed Linear Algebra MIT 18.06 notes", 
-      "color": "", 
-      "node": "linalg" 
-    },
-    { 
-      "hash": "m1n2b3v", 
-      "date": "2026-10-22", 
-      "msg": "init: Created CogniCraft Knowledge Graph", 
-      "color": "green", 
-      "node": "ds" 
-    }
+    { "hash": "a1b2c3d", "date": "2026-10-26", "msg": "feat(portfolio): Completed full-screen layout & scroll animations", "color": "green", "node": "ds" },
+    { "hash": "d7e6f5a", "date": "2026-10-25", "msg": "feat(contact): Added LinkedIn profile link", "color": "green", "node": "python" },
+    { "hash": "c4b3a2d", "date": "2026-10-24", "msg": "docs(roadmap): Initialized Mathematics & Python nodes", "color": "", "node": "math" },
+    { "hash": "b1a2c3d", "date": "2026-10-23", "msg": "feat(core): Built 3D Knowledge Graph with Three.js", "color": "green", "node": "ds" }
   ]
 }
