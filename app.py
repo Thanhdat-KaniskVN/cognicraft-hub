@@ -24,6 +24,9 @@ def expertise():
 def roadmap():
     from flask import redirect
     return redirect('/expertise')
+@app.route('/projects')
+def projects():
+    return render_template('projects.html')
 @app.route('/books')
 def books(): return render_template('books.html')
 
