@@ -168,8 +168,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 .onNodeClick(n => window.focusNode(n.id));
 
             window.globalGraph.graphData(gData);
-            window.globalGraph.onEngineStop(() => { window.globalGraph.zoomToFit(1000, 180); });
-            window.globalGraph.d3Force('charge').strength(-400).d3Force('link').distance(100).d3Force('center').strength(0.05);
+            window.globalGraph.onEngineStop(() => { window.globalGraph.zoomToFit(1000, 60); });
+            window.globalGraph.d3Force('charge').strength(-150).d3Force('link').distance(60).d3Force('center').strength(0.05);
             
             const resizeGraph = () => {
                 if (window.globalGraph) window.globalGraph.width(graphContainer.clientWidth).height(graphContainer.clientHeight);
