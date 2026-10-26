@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .onNodeClick(n => window.focusNode(n.id));
 
             window.globalGraph.graphData(gData);
-            window.globalGraph.d3Force('charge').strength(-100).d3Force('link').distance(40).d3Force('center').strength(0.1);
+            window.globalGraph.d3Force('charge').strength(-300).d3Force('link').distance(80).d3Force('center').strength(0.05);
             
             const resizeGraph = () => {
                 if (window.globalGraph) window.globalGraph.width(graphContainer.clientWidth).height(graphContainer.clientHeight);
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(() => { 
                 resizeGraph(); 
-                window.globalGraph.zoomToFit(1000, 60); 
+                window.globalGraph.zoomToFit(1000, 100); 
             }, 1500);
             
         }).catch(err => console.error("Fetch data error:", err));
