@@ -30,4 +30,35 @@
     { "source": "linalg", "target": "ml" }, { "source": "calc", "target": "ml" }, { "source": "stats", "target": "ml" }, { "source": "pandas", "target": "eda" }, { "source": "sql_agg", "target": "eda" },
     { "source": "ml", "target": "dl" }, { "source": "dl", "target": "mlops" }
   ]
+,
+  "commit_log": [
+    { 
+      "hash": "a1b2c3d", 
+      "date": "2026-10-26", 
+      "msg": "init(calc): Completed Chapter 1 - Limits & Derivatives", 
+      "color": "green", 
+      "node": "calc" 
+    },
+    { 
+      "hash": "e5f6g7h", 
+      "date": "2026-10-25", 
+      "msg": "feat(python): Built a basic CLI calculator project", 
+      "color": "green", 
+      "node": "python" 
+    },
+    { 
+      "hash": "x9y8z7w", 
+      "date": "2026-10-24", 
+      "msg": "docs(math): Reviewed Linear Algebra MIT 18.06 notes", 
+      "color": "", 
+      "node": "linalg" 
+    },
+    { 
+      "hash": "m1n2b3v", 
+      "date": "2026-10-22", 
+      "msg": "init: Created CogniCraft Knowledge Graph", 
+      "color": "green", 
+      "node": "ds" 
+    }
+  ]
 }

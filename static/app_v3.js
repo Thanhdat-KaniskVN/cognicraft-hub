@@ -38,12 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 20);
 });
 
-// 3. AOS INIT
-document.addEventListener('DOMContentLoaded', () => {
-    if (typeof AOS !== 'undefined') AOS.init({ duration: 1000, easing: "ease-out-cubic", once: true, mirror: false, offset: 50 });
-});
-
-// 4. MOBILE MENU LOGIC
+// 3. MOBILE MENU LOGIC
 document.addEventListener('DOMContentLoaded', () => {
     const menuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -54,17 +49,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// 4. APPLE-LIKE SCROLL ANIMATION (LẶP LẠI)
+document.addEventListener('DOMContentLoaded', () => {
+    const commitLog = document.querySelector('.commit-log-container');
+    if (commitLog) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                } else {
+                    // Reset nếu phần tử đã trôi xuống dưới màn hình
+                    if (entry.boundingClientRect.top > 0) {
+                        entry.target.classList.remove('is-visible');
+                    }
+                }
+            });
+        }, { threshold: 0.15 });
+        observer.observe(commitLog);
+    }
+});
+
 // 5. ROADMAP 3D & CAMERA & SEARCH LOGIC
 window.globalGraph = null;
 window.globalData = null;
-window.doCenter = function() { if(window.globalGraph) window.globalGraph.zoomToFit(1000, 80); };
+window.doCenter = function() { if(window.globalGraph) window.globalGraph.zoomToFit(1000, 30); };
 
 window.focusNode = function(id) {
     if (!window.globalGraph || !window.globalData) return;
     const node = window.globalData.nodes.find(n => n.id === id);
     if (!node) return;
     
-    const dist = 120;
+    const dist = 100; 
     if (node.x === undefined) {
         setTimeout(() => window.focusNode(id), 500);
         return;
@@ -114,6 +129,24 @@ document.addEventListener('DOMContentLoaded', () => {
         if (['ds', 'eda', 'ml', 'dl', 'mlops'].includes(id)) return '#10a37f';
         return '#ffffff'; 
     };
+    const renderCommitLog = (data) => {
+        const commitList = document.getElementById('commit-log');
+        if (!commitList || !data.commit_log) return;
+        
+        commitList.innerHTML = data.commit_log.map(c => `
+            <div class="commit-item" onclick="if(window.focusNode) window.focusNode('${c.node}')" title="Click to view ${c.node} on graph">
+                <div class="commit-dot ${c.color}"></div>
+                <div class="commit-info">
+                    <span class="commit-hash">#${c.hash} → ${c.node}</span>
+                    <span class="commit-msg">${c.msg}</span>
+                    <span class="commit-date">${c.date}</span>
+                </div>
+            </div>
+        `).join('');
+    };
+
+
+    
 
     setTimeout(() => {
         fetch('/api/roadmap').then(res => res.json()).then(gData => {
@@ -125,6 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const right = document.getElementById('tree-right');
             const p12 = ['math', 'stats', 'python', 'sql']; 
             
+            // Render Sidebar
             gData.nodes.forEach(node => {
                 if (!gData.links.some(l => l.target === node.id)) { 
                     const isL = p12.includes(node.id); 
@@ -148,52 +182,101 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
+            // Render Commit Log
+            renderCommitLog(gData);
+
             const isDark = () => body.getAttribute('data-theme') === 'dark';
             const roots = gData.nodes.filter(n => !gData.links.some(l => l.target === n.id)).map(n => n.id);
 
             window.globalGraph = ForceGraph3D()(graphContainer)
                 .width(graphContainer.clientWidth).height(graphContainer.clientHeight)
                 .backgroundColor('rgba(0,0,0,0)')
-                .linkWidth(1.5)
-                .linkColor(() => isDark() ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)')
+                .linkWidth(1)
+                .linkColor(() => isDark() ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.15)')
                 .linkDirectionalParticles(1).linkDirectionalParticleSpeed(0.01).linkDirectionalParticleWidth(2)
                 .nodeThreeObject(n => {
                     const sprite = new SpriteText(n.name);
                     sprite.color = getNodeColor(n.id);
-                    // Chữ vừa vặn: Gốc 20, Con 10
-                    sprite.textHeight = roots.includes(n.id) ? 14 : 8; 
+                    sprite.textHeight = roots.includes(n.id) ? 12 : 6;
                     sprite.fontFace = 'Inter'; 
                     sprite.fontWeight = roots.includes(n.id) ? '700' : '500';
                     return sprite;
                 })
                 .onNodeClick(n => window.focusNode(n.id));
 
-            // CẤU HÌNH LỰC: Giữ đồ thị gom lại, không bị bung xa
-            window.globalGraph.d3Force('charge').strength(-250); // Lực đẩy vừa phải
-            window.globalGraph.d3Force('link').distance(80).strength(1); // Dây nối dài vừa phải
-            window.globalGraph.d3Force('center').strength(0.1); // Hút mạnh về tâm
-            
-            window.globalGraph.nodeRelSize(8); // Chấm tròn to rõ
-
             window.globalGraph.graphData(gData);
-            window.globalGraph.onEngineStop(() => { 
-                resizeGraph(); 
-                window.globalGraph.zoomToFit(1000, 80); // Khoảng đệm 80 là vừa đẹp
-            });
-            window.globalGraph.d3Force('charge').strength(-250).d3Force('link').distance(80).strength(0.1).d3Force('center').strength(0.1);
+            // Cấu hình lực cân bằng
+            window.globalGraph.d3Force('charge').strength(-100);
+            window.globalGraph.d3Force('link').distance(50).strength(0.5);
+            window.globalGraph.d3Force('center').strength(0.1);
             
             const resizeGraph = () => {
                 if (window.globalGraph) window.globalGraph.width(graphContainer.clientWidth).height(graphContainer.clientHeight);
             };
             window.addEventListener('resize', resizeGraph);
 
-            setTimeout(() => { resizeGraph(); }, 2500);
+            setTimeout(() => { 
+                resizeGraph(); 
+                window.globalGraph.zoomToFit(1000, 30); 
+            }, 1000);
             
         }).catch(err => console.error("Fetch data error:", err));
     }, 300);
 
-    // MOBILE RESIZE FIX
-    setTimeout(() => {
-        if (window.innerWidth <= 1024) window.dispatchEvent(new Event('resize'));
-    }, 1000);
+    // SEARCH LOGIC
+    const searchInput = document.getElementById('search-input');
+    const searchDropdown = document.getElementById('search-dropdown');
+
+    if (searchInput && searchDropdown) {
+        searchInput.addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase().trim();
+            searchDropdown.innerHTML = '';
+            
+            if (!val) { searchDropdown.style.display = 'none'; return; }
+            if (!window.globalData) return;
+
+            const matches = window.globalData.nodes.filter(n => 
+                n.name.toLowerCase().includes(val) || n.id.toLowerCase().includes(val)
+            );
+
+            if (matches.length > 0) {
+                searchDropdown.style.display = 'block';
+                matches.forEach(node => {
+                    const el = document.createElement('div');
+                    el.innerText = node.name;
+                    el.style.padding = '10px 15px';
+                    el.style.cursor = 'pointer';
+                    el.style.color = '#ffffff';
+                    el.style.fontFamily = 'monospace';
+                    el.style.fontSize = '0.85rem';
+                    el.style.borderBottom = '1px solid #27272a';
+                    
+                    el.onmouseover = () => el.style.background = '#222';
+                    el.onmouseout = () => el.style.background = 'transparent';
+                    
+                    el.onclick = () => {
+                        window.focusNode(node.id);
+                        searchDropdown.style.display = 'none';
+                        searchInput.value = node.name;
+                    };
+                    searchDropdown.appendChild(el);
+                });
+            } else {
+                searchDropdown.style.display = 'block';
+                const el = document.createElement('div');
+                el.innerText = 'No results found';
+                el.style.padding = '10px 15px';
+                el.style.color = '#ef4444';
+                el.style.fontFamily = 'monospace';
+                el.style.fontSize = '0.85rem';
+                searchDropdown.appendChild(el);
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
+                searchDropdown.style.display = 'none';
+            }
+        });
+    }
 });
