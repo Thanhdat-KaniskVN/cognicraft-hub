@@ -17,18 +17,13 @@ def write_data(data):
 def index(): return render_template('index.html')
 
 @app.route('/expertise')
-@app.route('/expertise')
+def expertise():
+    return render_template('roadmap.html')
+
 @app.route('/roadmap')
 def roadmap():
     from flask import redirect
     return redirect('/expertise')
-
-def expertise(): return render_template('roadmap.html')
-
-
-@app.route('/projects')
-def projects():
-    return render_template('projects.html')
 @app.route('/books')
 def books(): return render_template('books.html')
 
