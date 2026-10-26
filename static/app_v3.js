@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // 5. ROADMAP 3D & CAMERA & SEARCH LOGIC
 window.globalGraph = null;
 window.globalData = null;
-window.doCenter = function() { if(window.globalGraph) window.globalGraph.zoomToFit(1000, 20); };
+window.doCenter = function() { if(window.globalGraph) window.globalGraph.zoomToFit(1000, 10); };
 
 window.focusNode = function(id) {
     if (!window.globalGraph || !window.globalData) return;
@@ -168,8 +168,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 .onNodeClick(n => window.focusNode(n.id));
 
             window.globalGraph.graphData(gData);
-            window.globalGraph.onEngineStop(() => { window.globalGraph.zoomToFit(1000, 20); });
-            window.globalGraph.d3Force('charge').strength(-50).d3Force('link').distance(30).d3Force('center').strength(1.0);
+            window.globalGraph.onEngineStop(() => { window.globalGraph.zoomToFit(1000, 10); });
+            window.globalGraph.d3Force('charge').strength(-200).d3Force('link').distance(80).d3Force('center').strength(1.0);
             
             const resizeGraph = () => {
                 if (window.globalGraph) window.globalGraph.width(graphContainer.clientWidth).height(graphContainer.clientHeight);
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(() => { 
                 resizeGraph(); 
-                window.globalGraph.zoomToFit(1000, 20); 
+                window.globalGraph.zoomToFit(1000, 10); 
             }, 1500);
             
         }).catch(err => console.error("Fetch data error:", err));
