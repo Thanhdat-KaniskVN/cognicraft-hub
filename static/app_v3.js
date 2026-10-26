@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // 5. ROADMAP 3D & CAMERA & SEARCH LOGIC
 window.globalGraph = null;
 window.globalData = null;
-window.doCenter = function() { if(window.globalGraph) window.globalGraph.zoomToFit(1000, 50); };
+window.doCenter = function() { if(window.globalGraph) window.globalGraph.zoomToFit(1000, 150); };
 
 window.focusNode = function(id) {
     if (!window.globalGraph || !window.globalData) return;
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const sprite = new SpriteText(n.name);
                     sprite.color = getNodeColor(n.id);
                     // Chữ vừa vặn: Gốc 20, Con 10
-                    sprite.textHeight = roots.includes(n.id) ? 20 : 10; 
+                    sprite.textHeight = roots.includes(n.id) ? 12 : 6; 
                     sprite.fontFace = 'Inter'; 
                     sprite.fontWeight = roots.includes(n.id) ? '700' : '500';
                     return sprite;
@@ -169,15 +169,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 .onNodeClick(n => window.focusNode(n.id));
 
             // CẤU HÌNH LỰC: Giữ đồ thị gom lại, không bị bung xa
-            window.globalGraph.d3Force('charge').strength(-150); // Lực đẩy vừa phải
-            window.globalGraph.d3Force('link').distance(80).strength(1); // Dây nối dài vừa phải
-            window.globalGraph.d3Force('center').strength(1); // Hút mạnh về tâm
+            window.globalGraph.d3Force('charge').strength(-300); // Lực đẩy vừa phải
+            window.globalGraph.d3Force('link').distance(150).strength(1); // Dây nối dài vừa phải
+            window.globalGraph.d3Force('center').strength(0.05); // Hút mạnh về tâm
             
-            window.globalGraph.nodeRelSize(15); // Chấm tròn to rõ
+            window.globalGraph.nodeRelSize(10); // Chấm tròn to rõ
 
             window.globalGraph.graphData(gData);
-            window.globalGraph.onEngineStop(() => { window.globalGraph.zoomToFit(1000, 50); });
-            window.globalGraph.d3Force('charge').strength(-150).d3Force('link').distance(70).strength(0.1).d3Force('center').strength(0.05);
+            window.globalGraph.onEngineStop(() => { window.globalGraph.zoomToFit(1000, 150); });
+            window.globalGraph.d3Force('charge').strength(-300).d3Force('link').distance(150).strength(0.1).d3Force('center').strength(0.05);
             
             const resizeGraph = () => {
                 if (window.globalGraph) window.globalGraph.width(graphContainer.clientWidth).height(graphContainer.clientHeight);
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(() => { 
                 resizeGraph(); 
-                window.globalGraph.zoomToFit(1000, 50); 
+                window.globalGraph.zoomToFit(1000, 150); 
             }, 1500);
             
         }).catch(err => console.error("Fetch data error:", err));
