@@ -160,12 +160,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 .nodeThreeObject(n => {
                     const sprite = new SpriteText(n.name);
                     sprite.color = getNodeColor(n.id);
-                    sprite.textHeight = roots.includes(n.id) ? 10 : 6;
+                    // Kích thước chữ vừa phải, không quá to để tránh đè lên nhau
+                    sprite.textHeight = roots.includes(n.id) ? 8 : 4; 
                     sprite.fontFace = 'Inter'; 
                     sprite.fontWeight = roots.includes(n.id) ? '700' : '500';
                     return sprite;
                 })
                 .onNodeClick(n => window.focusNode(n.id));
+
+            // CẤU HÌNH LỰC CÂN BẰNG (Đã được tính toán kỹ)
+            window.globalGraph.d3Force('charge').strength(-300); // Đẩy các node ra xa
+            window.globalGraph.d3Force('link').distance(120).strength(1); // Dây nối dài 120, lực kéo vừa phải
+            window.globalGraph.d3Force('center').strength(0.05); // Lực hút về tâm nhẹ
+            
+            // Kích thước chấm tròn vừa phải
+            window.globalGraph.nodeRelSize(6);
 
             window.globalGraph.graphData(gData);
             window.globalGraph.onEngineStop(() => { window.globalGraph.zoomToFit(1000, 100); });
