@@ -1,10 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
-    <h2 class="section-title">Books & Resources</h2>
+<div class="container" style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+    <h1 class="matrix-title" style="font-size: 2.5rem; margin-bottom: 2rem;">Books & Resources<span class="dot-end">.</span></h1>
+    
     <div class="books-grid">
-        <div class="book-card"><div class="book-img" style="background-image: url('https://images.unsplash.com/photo-1509228468518-180dd4864904?w=600');"></div><div class="book-content"><h3 class="book-title">Book of Proof</h3><p class="book-author">Richard Hammack</p><a href="https://richardhammack.github.io/BookOfProof/Main.pdf" target="_blank" class="book-link">Read PDF &rarr;</a></div></div>
-        <div class="book-card"><div class="book-img" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600');"></div><div class="book-content"><h3 class="book-title">Math Stats & Data Analysis</h3><p class="book-author">John A. Rice</p><a href="https://korivernon.com/documents/MathematicalStatisticsandDataAnalysis3ed.pdf" target="_blank" class="book-link">Read PDF &rarr;</a></div></div>
+        <div class="book-card">
+            <div class="book-img">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            </div>
+            <div class="book-content">
+                <h3 class="book-title">Book of Proof</h3>
+                <p class="book-author">Richard Hammack</p>
+                <a href="https://www.people.vcu.edu/~rhammack/BookOfProof/Main.pdf" target="_blank" class="book-link">Read PDF →</a>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-img">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20v-6M6 20V10M18 20V4"></path></svg>
+            </div>
+            <div class="book-content">
+                <h3 class="book-title">Math Stats & Data Analysis</h3>
+                <p class="book-author">John A. Rice</p>
+                <a href="https://korivernon.com/documents/MathematicalStatisticsandDataAnalysis3ed.pdf" target="_blank" class="book-link">Read PDF →</a>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
