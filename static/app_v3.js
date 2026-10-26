@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // 5. ROADMAP 3D & CAMERA & SEARCH LOGIC
 window.globalGraph = null;
 window.globalData = null;
-window.doCenter = function() { if(window.globalGraph) window.globalGraph.zoomToFit(1000, 150); };
+window.doCenter = function() { if(window.globalGraph) window.globalGraph.zoomToFit(1000, 250); };
 
 window.focusNode = function(id) {
     if (!window.globalGraph || !window.globalData) return;
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const sprite = new SpriteText(n.name);
                     sprite.color = getNodeColor(n.id);
                     // Chữ vừa vặn: Gốc 20, Con 10
-                    sprite.textHeight = roots.includes(n.id) ? 12 : 6; 
+                    sprite.textHeight = roots.includes(n.id) ? 14 : 8; 
                     sprite.fontFace = 'Inter'; 
                     sprite.fontWeight = roots.includes(n.id) ? '700' : '500';
                     return sprite;
@@ -169,22 +169,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 .onNodeClick(n => window.focusNode(n.id));
 
             // CẤU HÌNH LỰC: Giữ đồ thị gom lại, không bị bung xa
-            window.globalGraph.d3Force('charge').strength(-120); // Lực đẩy vừa phải
-            window.globalGraph.d3Force('link').distance(60).strength(1); // Dây nối dài vừa phải
+            window.globalGraph.d3Force('charge').strength(-100); // Lực đẩy vừa phải
+            window.globalGraph.d3Force('link').distance(70).strength(1); // Dây nối dài vừa phải
             window.globalGraph.d3Force('center').strength(0.05); // Hút mạnh về tâm
             
-            window.globalGraph.nodeRelSize(10); // Chấm tròn to rõ
+            window.globalGraph.nodeRelSize(8); // Chấm tròn to rõ
 
             window.globalGraph.graphData(gData);
             window.globalGraph.onEngineStop(() => { window.globalGraph.zoomToFit(1000, 150); });
-            window.globalGraph.d3Force('charge').strength(-120).d3Force('link').distance(60).strength(0.1).d3Force('center').strength(0.05);
+            window.globalGraph.d3Force('charge').strength(-100).d3Force('link').distance(70).strength(0.1).d3Force('center').strength(0.05);
             
             const resizeGraph = () => {
                 if (window.globalGraph) window.globalGraph.width(graphContainer.clientWidth).height(graphContainer.clientHeight);
             };
             window.addEventListener('resize', resizeGraph);
 
-            setTimeout(() => { resizeGraph(); window.globalGraph.zoomToFit(1000, 150); }, 2500);
+            setTimeout(() => { resizeGraph(); }, 2500);
             
         }).catch(err => console.error("Fetch data error:", err));
     }, 300);
