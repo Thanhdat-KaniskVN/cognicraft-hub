@@ -169,15 +169,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 .onNodeClick(n => window.focusNode(n.id));
 
             // CẤU HÌNH LỰC: Giữ đồ thị gom lại, không bị bung xa
-            window.globalGraph.d3Force('charge').strength(-100); // Lực đẩy vừa phải
-            window.globalGraph.d3Force('link').distance(70).strength(1); // Dây nối dài vừa phải
-            window.globalGraph.d3Force('center').strength(0.05); // Hút mạnh về tâm
+            window.globalGraph.d3Force('charge').strength(-250); // Lực đẩy vừa phải
+            window.globalGraph.d3Force('link').distance(80).strength(1); // Dây nối dài vừa phải
+            window.globalGraph.d3Force('center').strength(0.1); // Hút mạnh về tâm
             
             window.globalGraph.nodeRelSize(8); // Chấm tròn to rõ
 
             window.globalGraph.graphData(gData);
-            window.globalGraph.onEngineStop(() => { window.globalGraph.zoomToFit(1000, 150); });
-            window.globalGraph.d3Force('charge').strength(-100).d3Force('link').distance(70).strength(0.1).d3Force('center').strength(0.05);
+            window.globalGraph.onEngineStop(() => { 
+                resizeGraph(); 
+                window.globalGraph.zoomToFit(1000, 80); // Khoảng đệm 80 là vừa đẹp
+            });
+            window.globalGraph.d3Force('charge').strength(-250).d3Force('link').distance(80).strength(0.1).d3Force('center').strength(0.1);
             
             const resizeGraph = () => {
                 if (window.globalGraph) window.globalGraph.width(graphContainer.clientWidth).height(graphContainer.clientHeight);
