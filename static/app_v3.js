@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!graphContainer) return; 
 
     const getNodeColor = (id) => {
-        if (['math', 'calc', 'linalg', 'prob', 'stats', 'discrete'].includes(id)) return '#3b82f6';
+        if (['math', 'calc', 'linalg', 'prob', 'stats', 'discrete', 'state_machines'].includes(id)) return '#3b82f6';
         if (['python', 'basic', 'oop', 'dsa', 'pandas'].includes(id)) return '#eab308';
         if (['sql', 'sql_basic', 'sql_join', 'sql_agg', 'sql_window'].includes(id)) return '#ef4444';
         if (['ds', 'eda', 'ml', 'dl', 'mlops'].includes(id)) return '#10a37f';
