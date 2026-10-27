@@ -1,26 +1,49 @@
 {
   "nodes": [
-    { "id": "math", "name": "1. Mathematics", "desc": "Foundation of thinking", "details": "Mathematics provides the foundational language and tools for understanding and building algorithms.", "links": [] },
-    { "id": "calc", "name": "Calculus", "desc": "Derivatives, Integrals", "details": "Calculus is the mathematical study of continuous change. Used in optimization (Gradient Descent) and probability distributions.", "links": [{"title": "MIT 18.01", "url": "https://ocw.mit.edu/courses/18-01-single-variable-calculus-fall-2006/", "type": "Course"}] },
-    { "id": "linalg", "name": "Linear Algebra", "desc": "Vectors, Matrices", "details": "The core of Deep Learning. Neural networks are essentially massive matrix multiplications.", "links": [{"title": "MIT 18.06", "url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/", "type": "Course"}] },
-    { "id": "prob", "name": "Probability", "desc": "Probability Theory", "details": "Modeling uncertainty. The foundation of Bayesian Inference and predictive modeling.", "links": [] },
-    { "id": "stats", "name": "Statistics", "desc": "Applied Statistics", "details": "Collecting, analyzing, interpreting, and presenting data to make informed decisions.", "links": [] },
-    { "id": "discrete", "name": "Discrete Math", "desc": "Logic, Graphs", "details": "Foundational logic for Computer Science, graph theory, and combinatorics.", "links": [] },
-    { "id": "python", "name": "2. Python", "desc": "Core Programming Language", "details": "The most popular programming language for Data Science due to its powerful ecosystem of libraries.", "links": [{"title": "Python Docs", "url": "https://docs.python.org/3/", "type": "Doc"}] },
-    { "id": "basic", "name": "Python Basics", "desc": "Syntax, Loops", "details": "Variables, data types, conditional statements, for/while loops.", "links": [] },
-    { "id": "oop", "name": "OOP", "desc": "Classes, Objects", "details": "Object-Oriented Programming: Classes, Inheritance, Polymorphism, Encapsulation.", "links": [] },
-    { "id": "dsa", "name": "DSA", "desc": "Data Structures & Algorithms", "details": "Data Structures (Array, Tree, Graph) and Algorithms (Sort, Search, DP). Mandatory for tech interviews.", "links": [] },
-    { "id": "pandas", "name": "Pandas & NumPy", "desc": "Data Processing", "details": "Manipulating DataFrames, multi-dimensional arrays, data cleaning and transformation.", "links": [] },
-    { "id": "sql", "name": "3. SQL", "desc": "Relational Databases", "details": "Structured Query Language. A survival skill for any Data Scientist.", "links": [] },
-    { "id": "sql_basic", "name": "Basic Query", "desc": "SELECT, WHERE", "details": "Basic queries: Retrieving data, filtering with WHERE clauses.", "links": [] },
-    { "id": "sql_join", "name": "Joins", "desc": "INNER, LEFT, RIGHT", "details": "Combining data from multiple tables based on related columns.", "links": [] },
-    { "id": "sql_agg", "name": "Aggregations", "desc": "GROUP BY, HAVING", "details": "Statistical calculations on groups of data: SUM, AVG, COUNT.", "links": [] },
-    { "id": "sql_window", "name": "Window Functions", "desc": "RANK, LEAD, LAG", "details": "Calculations across a set of table rows that are somehow related to the current row, without losing detail.", "links": [] },
-    { "id": "ds", "name": "4. Data Science", "desc": "Data Science", "details": "An interdisciplinary field that uses scientific methods, algorithms, and systems to extract knowledge from data.", "links": [] },
-    { "id": "eda", "name": "EDA", "desc": "Exploratory Data Analysis", "details": "Using statistics and visualizations to understand data before modeling.", "links": [] },
-    { "id": "ml", "name": "Machine Learning", "desc": "Machine Learning", "details": "Supervised, Unsupervised Learning. Algorithms like Linear Regression, Random Forest, SVM.", "links": [] },
-    { "id": "dl", "name": "Deep Learning", "desc": "Deep Learning", "details": "Neural Networks, CNN, RNN, Transformer. Requires a strong foundation in Linear Algebra.", "links": [] },
-    { "id": "mlops", "name": "MLOps", "desc": "Model Deployment", "details": "Deploying models to production, CI/CD, Docker, and monitoring.", "links": [] }
+    { "id": "math", "name": "1. Mathematics", "desc": "Foundation of thinking", "details": "Mathematics provides the foundational language and tools for understanding and building algorithms.", "links": [
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] },
+    { "id": "calc", "name": "Calculus", "desc": "Derivatives, Integrals", "details": "Calculus is the mathematical study of continuous change. Used in optimization (Gradient Descent) and probability distributions.", "links": [{"title": "MIT 18.01", "url": "https://ocw.mit.edu/courses/18-01-single-variable-calculus-fall-2006/", "type": "Course"}
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] },
+    { "id": "linalg", "name": "Linear Algebra", "desc": "Vectors, Matrices", "details": "The core of Deep Learning. Neural networks are essentially massive matrix multiplications.", "links": [{"title": "MIT 18.06", "url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/", "type": "Course"}
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] },
+    { "id": "prob", "name": "Probability", "desc": "Probability Theory", "details": "Modeling uncertainty. The foundation of Bayesian Inference and predictive modeling.", "links": [
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] },
+    { "id": "stats", "name": "Statistics", "desc": "Applied Statistics", "details": "Collecting, analyzing, interpreting, and presenting data to make informed decisions.", "links": [
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] },
+    { "id": "discrete", "name": "Discrete Math", "desc": "Logic, Graphs", "details": "Foundational logic for Computer Science, graph theory, and combinatorics.", "links": [
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] },
+    { "id": "python", "name": "2. Python", "desc": "Core Programming Language", "details": "The most popular programming language for Data Science due to its powerful ecosystem of libraries.", "links": [{"title": "Python Docs", "url": "https://docs.python.org/3/", "type": "Doc"}
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] },
+    { "id": "basic", "name": "Python Basics", "desc": "Syntax, Loops", "details": "Variables, data types, conditional statements, for/while loops.", "links": [
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] },
+    { "id": "oop", "name": "OOP", "desc": "Classes, Objects", "details": "Object-Oriented Programming: Classes, Inheritance, Polymorphism, Encapsulation.", "links": [
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] },
+    { "id": "dsa", "name": "DSA", "desc": "Data Structures & Algorithms", "details": "Data Structures (Array, Tree, Graph) and Algorithms (Sort, Search, DP). Mandatory for tech interviews.", "links": [
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] },
+    { "id": "pandas", "name": "Pandas & NumPy", "desc": "Data Processing", "details": "Manipulating DataFrames, multi-dimensional arrays, data cleaning and transformation.", "links": [
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] },
+    { "id": "sql", "name": "3. SQL", "desc": "Relational Databases", "details": "Structured Query Language. A survival skill for any Data Scientist.", "links": [
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] },
+    { "id": "sql_basic", "name": "Basic Query", "desc": "SELECT, WHERE", "details": "Basic queries: Retrieving data, filtering with WHERE clauses.", "links": [
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] },
+    { "id": "sql_join", "name": "Joins", "desc": "INNER, LEFT, RIGHT", "details": "Combining data from multiple tables based on related columns.", "links": [
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] },
+    { "id": "sql_agg", "name": "Aggregations", "desc": "GROUP BY, HAVING", "details": "Statistical calculations on groups of data: SUM, AVG, COUNT.", "links": [
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] },
+    { "id": "sql_window", "name": "Window Functions", "desc": "RANK, LEAD, LAG", "details": "Calculations across a set of table rows that are somehow related to the current row, without losing detail.", "links": [
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] },
+    { "id": "ds", "name": "4. Data Science", "desc": "Data Science", "details": "An interdisciplinary field that uses scientific methods, algorithms, and systems to extract knowledge from data.", "links": [
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] },
+    { "id": "eda", "name": "EDA", "desc": "Exploratory Data Analysis", "details": "Using statistics and visualizations to understand data before modeling.", "links": [
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] },
+    { "id": "ml", "name": "Machine Learning", "desc": "Machine Learning", "details": "Supervised, Unsupervised Learning. Algorithms like Linear Regression, Random Forest, SVM.", "links": [
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] },
+    { "id": "dl", "name": "Deep Learning", "desc": "Deep Learning", "details": "Neural Networks, CNN, RNN, Transformer. Requires a strong foundation in Linear Algebra.", "links": [
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] },
+    { "id": "mlops", "name": "MLOps", "desc": "Model Deployment", "details": "Deploying models to production, CI/CD, Docker, and monitoring.", "links": [
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] }
+    { "id": "state_machines", "name": "State Machines", "desc": "Finite State Machines (FSM)", "details": "A mathematical model of computation used to design algorithms and digital logic. Key concepts: States, Transitions, Invariants, Reachability. Applied in the Vending Machine FSM project.", "links": [{"title": "MIT 6.1200J Lecture 04", "url": "https://ocw.mit.edu/courses/6-1200j-mathematics-for-computer-science-spring-2024/mit6_1200j_s24_lec04.pdf", "type": "Course"}, {"title": "Vending Machine FSM (GitHub)", "url": "https://github.com/Thanhdat-KaniskVN/math-foundation-magical-formation/tree/main/vending_machine_fsm", "type": "Project"}
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },] }
   ],
   "links": [
     { "source": "math", "target": "calc" }, { "source": "math", "target": "linalg" }, { "source": "math", "target": "prob" }, { "source": "math", "target": "discrete" }, { "source": "prob", "target": "stats" },
@@ -29,11 +52,13 @@
     { "source": "ds", "target": "eda" }, { "source": "ds", "target": "ml" }, { "source": "ds", "target": "mlops" },
     { "source": "linalg", "target": "ml" }, { "source": "calc", "target": "ml" }, { "source": "stats", "target": "ml" }, { "source": "pandas", "target": "eda" }, { "source": "sql_agg", "target": "eda" },
     { "source": "ml", "target": "dl" }, { "source": "dl", "target": "mlops" }
+    { "source": "discrete", "target": "state_machines" },
   ],
   "commit_log": [
     { "hash": "a1b2c3d", "date": "2026-10-26", "msg": "feat(portfolio): Completed full-screen layout & scroll animations", "color": "green", "node": "ds" },
     { "hash": "d7e6f5a", "date": "2026-10-25", "msg": "feat(contact): Added LinkedIn profile link", "color": "green", "node": "python" },
     { "hash": "c4b3a2d", "date": "2026-10-24", "msg": "docs(roadmap): Initialized Mathematics & Python nodes", "color": "", "node": "math" },
     { "hash": "b1a2c3d", "date": "2026-10-23", "msg": "feat(core): Built 3D Knowledge Graph with Three.js", "color": "green", "node": "ds" }
+    { "hash": "b4c5d6e", "date": "2026-10-27", "msg": "feat(math): Added State Machines node with MIT lecture and Vending Machine project", "color": "green", "node": "state_machines" },
   ]
 }
